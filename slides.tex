@@ -1,0 +1,103 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[square,numbers]{natbib}
+\usepackage[final]{listings}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{url} 
+ \usepackage{tikz}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+\usepackage[printwatermark]{xwatermark}
+
+%\newwatermark*[allpages,color=red!50,angle=45,scale=3,xpos=0,ypos=0]{DRAFT}
+
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=red,opacity=0.1]\node{DRAFT};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=6,
+  xpos=-20,
+  ypos=15
+]{\usebox\mybox}
+ 
+ \lstset{
+        language=C++,
+        basicstyle=\small\ttfamily\color{blue}, % Standardschrift %       
+                                    % % TODO: consider making tiny to make  
+                                     % % things fit 
+        numbers=left, % Ort der Zeilennummerg
+         numberstyle=\footnotesize\ttfamily,          % Stil der Zeilennummern
+         stepnumber=2,               % Abstand zwischen den Zeilennummern  
+         numbersep=6pt,              % Abstand der Nummern zum Text
+         tabsize=2,                  % Groesse von Tabs                                          
+         extendedchars=true,         %               
+         breaklines=true,            % Zeilen werden Umgebrochen             
+         frame=single,
+         keywordstyle=[1]\textbf,% Stil der Keywords
+         keywordstyle=\color{red},
+         stringstyle=\ttfamily,
+         showspaces=false,           % Leerzeichen anzeigen ? 
+         showtabs=false,             % Tabs anzeigen?
+         showstringspaces=false,    % Leerzeichen in Strings anzeigen ?
+         commentstyle=\color{codegreen},
+         numberstyle=\tiny\color{codegray},
+         stringstyle=\color{codepurple},
+         commentstyle=\color{green},
+         morecomment=[l][\color{magenta}]{\#},
+         captionpos=b
+}
+
+\lstdefinestyle{mystyle}{
+     backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+ }
+ 
+
+\usepackage[fencedCode,inlineFootnotes,citations,definitionLists,hashEnumerators,smartEllipses,hybrid]{markdown}
+
+%\markdownSetup{
+ % renderers = {
+ %   link     = {#1},        % Render a link as the link label.
+%    emphasis = {\emph{#1}}, % Render emphasis using `\emph`.
+%  }
+%}
+
+\title{Enhancing Support in OpenMP to Improve Data Locality in Application Programs Using Task Scheduling}
+\author{Vivek Kale and Martin Kong}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+%\begin{markdown}
+
+\markdownInput{./dlts_slides_ocn18.md}
+
+%\end{markdown} 
+
+
+
+
+
+\end{document}
