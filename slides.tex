@@ -6,30 +6,69 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{url} 
+
+
+\usetheme{Luebeck}
+\useoutertheme{infolines}
+\usefonttheme{serif}
+
+%\usecolortheme{rose}
+
+\setbeamertemplate{frametitle}[default][center]
+
+
+
+\usepackage{hyperref}
  \usepackage{tikz}
+\usepackage{tabularx}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 
+\usepackage{moderncvcompatibility}
+
+%\usepackage[backend=biber,style=authoryear,sorting=none]{biblatex}
+%\addbibresource{mybibFile.bib}
+
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+
+% To give a presentation with the Skim reader (http://skim-app.sourceforge.net) on OSX so
+% that you see the notes on your laptop and the slides on the projector, do the following:
+% 
+% 1. Generate just the presentation (hide notes) and save to slides.pdf
+% 2. Generate onlt the notes (show only nodes) and save to notes.pdf
+% 3. With Skim open both slides.pdf and notes.pdf
+% 4. Click on slides.pdf to bring it to front.
+% 5. In Skim, under "View -> Presentation Option -> Synhcronized Noted Document"
+%    select notes.pdf.
+% 6. Now as you move around in slides.pdf the notes.pdf file will follow you.
+% 7. Arrange windows so that notes.pdf is in full screen mode on your laptop
+%    and slides.pdf is in presentation mode on the projector.
+
+% Give a slight yellow tint to the notes page
+\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino}
+
 \usepackage[printwatermark]{xwatermark}
 
 %\newwatermark*[allpages,color=red!50,angle=45,scale=3,xpos=0,ypos=0]{DRAFT}
 
-\newsavebox\mybox
-\savebox\mybox{\tikz[color=red,opacity=0.1]\node{DRAFT};}
-\newwatermark*[
-  allpages,
-  angle=45,
-  scale=6,
-  xpos=-20,
-  ypos=15
-]{\usebox\mybox}
+%\newsavebox\mybox
+%\savebox\mybox{\tikz[color=red,opacity=0.025]\node{DRAFT};}
+%\newwatermark*[
+%  allpages,
+%  angle=45,
+%  scale=6,
+%  xpos=-20,
+%  ypos=15
+%]{\usebox\mybox}
  
  \lstset{
         language=C++,
-        basicstyle=\small\ttfamily\color{blue}, % Standardschrift %       
+        basicstyle=\tiny\ttfamily\color{blue}, % Standardschrift %       
                                     % % TODO: consider making tiny to make  
                                      % % things fit 
         numbers=left, % Ort der Zeilennummerg
@@ -60,7 +99,7 @@
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
-    basicstyle=\footnotesize,
+    basicstyle=\tiny,
     breakatwhitespace=false,         
     breaklines=true,                 
     captionpos=b,                    
@@ -72,9 +111,15 @@
     showtabs=false,                  
     tabsize=2
  }
- 
 
 \usepackage[fencedCode,inlineFootnotes,citations,definitionLists,hashEnumerators,smartEllipses,hybrid]{markdown}
+
+\markdownSetup{rendererPrototypes={
+ link = {\href{#2}{#1}},
+ headingThree = {\begin{frame}\frametitle{#1}},
+ headingFour = {\begin{block}{#1}},
+ horizontalRule = {\end{block}}
+}}
 
 %\markdownSetup{
  % renderers = {
@@ -83,21 +128,30 @@
 %  }
 %}
 
-\title{Enhancing Support in OpenMP to Improve Data Locality in Application Programs Using Task Scheduling}
-\author{Vivek Kale and Martin Kong}
-\date{\today}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\newcommand{\comments}[1]{}
+
+\title[Locality for OpenMP Tasking]{Enhancing Support in OpenMP to Improve Data Locality in Application Programs Using Task Scheduling}
+
+\author[Presenter: Lingda Li]{Martin Kong and Vivek Kale}
+\date{September 25, 2018}
+
 
 \begin{document}
+\begin{frame}
 \maketitle
+\begin{center}
+    \textit{Presenter: Lingda Li}
+\end{center}
+\newline
 
-%\begin{markdown}
-
+\end{frame}
 \markdownInput{./dlts_slides_ocn18.md}
-
-%\end{markdown} 
-
-
-
-
 
 \end{document}

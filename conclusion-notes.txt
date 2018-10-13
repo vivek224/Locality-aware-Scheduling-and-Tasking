@@ -1,0 +1,24 @@
+# Section: closing
+
+We conclude the presentation  by  explaining  how  our  additions to OpenMP task scheduling  will  benefit  data  locality  and  talk  about next steps in moving the proposal forward within OpenMP including our draft schedule / timeline for getting the constructs added to OpenMP.
+
+
+## Conclusion
+
+- There  is  a  way  to  enable  locality-aware  tasking  in  OpenMP  5.0  throughthe use of the clause affinity and through using parameters and hints to theclause.   
+
+- We  need  to  facilitate  for  or  create  a  larger  number  of  task  scheduling strategies taking into account in OpenMP. We propose having new typesof  hints  for  locality-aware  task  scheduling’s  clause affinity that  specify  
+    (a) what data  should  be  associated  with  a  particular  thread,  or  privatized  
+    (b)the degree to which that data should be privatized.  
+    We believe that such support  in  task  scheduling  in  OpenMP  will  further  improve  performance  of OpenMP application codes and improve performance for a much larger number of application-architecture pairs.  
+
+- We would like to discuss the ideas with experts in OpenMP at the conference.  We’ll take feedback to add the ideas to OpenMP version 5.1 or a version of OpenMP immediately succeeding OpenMP version 5.1.
+
+## Future Work 
+
+
+## Acknowledgements 
+
+
+## Possible Questions 
+

@@ -1,0 +1,23 @@
+## Slide 0: Title slide 
+
+## Slide 1: Introduction 
+
+
+##  Slide 2: Motivation 
+
+Third bullet:  While having a few fixed tasking strategies taking into account data locality can be beneficial for most applications-architecture pairs ... 
+
+
+## A Possible Solution
+
+
+So, the question is 
+2/27Data Locality for OpenMP TaskingMotivationIn an OpenMP application in which work is scheduled to threadsdynamically, data localityis important for efficient execution ofthe application.Using the clauseaffinityfor task scheduling proposed forOpenMP 5.0 can improve data locality [10][5].However, task scheduling strategies fixed by the runtime system,even with hints to the affinity clause.It is arguable that this small set of strategies isn’t beneficial for allapplication-architecture pairs [5, 6, 1, 4, 2, 8]
+
+
+
+Using the clauseaffinityfor task scheduling proposed forOpenMP 5.0 can improve data locality [10][5] 
+
+
+
+- prescriptive /descriptive  to the affinity clause for locality. 

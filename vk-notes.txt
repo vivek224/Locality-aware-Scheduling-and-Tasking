@@ -1,0 +1,63 @@
+
+## Slide 14: Background: using OpenMP's taskloop
+
+
+
+Slide transition: We now talk about a second related proposal provided for tasking for load imbalanced application codes. 
+
+Then, say the following points: 
+ For bullet . 1: OpenMP taskloop, using untied, is beneficial for irregular parallel computation where no pattern of load imbalance existsacross outer iterations, such as sparse matrix multiplication as shown in work by Milind Kulkarni from Purdue, where no pattern of load imbalance exists across outer iterations.
+
+For bullet 1, make the following note: Note that using OpenMP's ```schedule``` clause instead of OpenMP's ```taskloop``` construct would be restricted in its benefits because the pattern of load imbalance and data locality can best be determined and made use of through a task scheduling strategy, unless the scheduling strategy has locality-sensitivity within it. 
+
+For bullet 2, say: The construct ```taskloop``` in OpenMP can also be beneficial for application code in which the load imbalance of the computation of the application code exhibits a repeated pattern over application timesteps, i.e., is __persistent__\cite{NamdSC02}. 
+
+For bullet 3, say that ideas work for loop scheduling also, by incorporating state in the loop scheduler, either by the user or the compiler. 
+
+The taskloop construct can also be beneficial for application code in which the load imbalance is persistent[10, 7].
+
+After saying that point, '-Consider an OpenMP application code  using a ```taskloop``` construct with multiple outer iterations. '
+
+ say 'Ideas for task scheduling shown here work for loop scheduling also, by incorporating state in the loop scheduler, either by the user or the compiler.'
+
+- When a computation is load balanced across cores over successive invocations of a timestep, the application’s performance degrades when a task is scheduled to a core different than it had been in the previous outer iteration, or invocation, of the OpenMP computation region.
+
+- emphasize Intel Xeon 64-core example 
+
+- Make clear that task affinity isn't adequate here because it doesn't consider all application architecture pairs. 
+
+## Slide 15: Proposal for locality sensitivity
+
+
+
+If the number generated determines (1), the thread searches for the first task in the queue which has run on that thread in the previous invocation of the taskloop computation region.
+
+After reading the bullets , say the following: 
+
+-  The scheduler can balance or tune how much load balance and how much data locality the application code has through the use of the variable ```randomizationFactor```. 
+- The constraint allows one to trade-off the decrease in time of cache misses but larger search time in the queue for the right tasklet with better load balancing from randomization
+
+## Slide 18: Approach of Locality-sensitivity : Example Illustrating Approach
+
+
+Describe the code as follows: 
+-  The application programmer specifies which data should be associated with one particular thread with id ```tid``` and what data can be shared across all threads. 
+- The application programmer specifies the degree to which a task should be associated with one particular thread with id ```tid```.
+-  The options passed to the affinity scheduling clause allows one to tune the degree to which load balancing is maintained with respect to data locality.
+
+
+## Slide 19: 
+
+
+
+
+## Slide 16: Guidelines for Implementation, e.g., task size or chunk size. 
+
+-  The implementation needs to not create false sharing in misalignment of shared queue. 
+- Implementation should minimize time to search for a task in queue that match the locality tag. 
+- Implementation should reduce synchronization overheads by supporting a and tuning of parameter for number of queues.
+- Implementation should use an efficient implementation of work stealing\cite{worksteal99}, trying to reduce the cost of contention on the shared memory interconnect.
+- Implementation shall ideally have an automatic determination of parameters of the task scheduling strategy.
+- Implementation should support history from previous outer iterations to determine the parameters of the task scheduling strategy in the current outer iteration.
+
+\end{}

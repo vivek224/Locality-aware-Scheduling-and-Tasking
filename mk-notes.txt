@@ -1,0 +1,60 @@
+Slide 1:
+- The first part of this talk will consist of a new directive proposal
+- The purpose of this directive is to affect the data access of one or more arrays by shifting / rescheduling some
+  loop inner to a worksharing loop, where thread identifier and thread number information is available
+- * Read remaining bullet points in slide*
+
+Slide 2:
+- Here we show how we would like the loopshift directive to be used
+- The main idea is to define an arithmetic expression that remaps the original loop iterator
+  of some loop inner to a worksharing loop.
+- In this expression we can use the iterator of the worksharing loop, the thread identifier,
+  and thread number
+- Possibly also team number!
+
+Slide 3:
+- Here we show the first example of how we would like loopshift to affect the program
+- We use a matrix-multiply to explain its semantics
+- First we add an explicit outer loop to iterate on the number of cores available (see variable CORES)
+- We define this as the parallel and worksharing loop
+- Next, we compute the bounds of the loop iterations assigned to each thread
+  (we assume one thread per core)
+- Note: ni, nj and nk are the problem sizes
+- The next thing to observe is that the kk loop iterator is remapped to k (see line 10)
+- In this particular example, this makes each thread to access different rows of array B
+- We can easily observe that if we set k = kk, then the possibility of two or more threads accessing
+  the same row of B increases, and the same data can end up in private L2 caches
+- While this encourages better reuse and the L3 level, it does not make good usage of the DRAM bandwidth
+- We will later see some encouraging results related to this kernel
+
+Slide 4:
+- In this example we use a time iterative jacobi-2d stencil kernel
+- We parallelize the i-loop
+- However, we do not use the same explicit worksharing approach as in the previous example
+- Unlike the previous case, we do not expect to see better memory traffic or usage,
+- The goal is to select a good mapping function of i = f(ii) to achieve better locality
+- Note : ref is a macro to access arrays A and B
+
+Slide 5:
+- Just read it
+
+Slide 6:
+- So for all experiments we run 2 problem sizes, which we call standard and large
+- Overall, we don't observe a significat variation in the execution time
+- The benefits of loopshift are more obvious in the energy reduction
+
+Slide 7:
+- Next, we observe the effects of the loop shift directive and the DRAM level
+- Our results show that although bandwidth usage remains almost constant, the loopshift  feature
+  induces a higher data volume traffice from DRAM to L3 (almost 2X in some cases!)
+- This is encouraging because it means that different threads are accessing different
+  memory regions in DRAM, and bringing it to L3, which is still shared
+- Larger DRAM increments are observed for the stndard problem size
+
+Slide 8:
+- Lastly we show the results in terms of energy consumption
+- We can observe that the loopshift directive achieves a 10% reduction in matmul standard,
+  above 40% reduction in matmul large, 70% reduction in j2d standard and about 10% in j2d large
+
+Slide 9:
+- Just read it 
